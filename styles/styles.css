@@ -1,0 +1,93 @@
+body{
+    text-align: center;
+}
+
+#center{
+    text-align: center;
+    align-items: center;
+}
+
+.display{
+    border: 1px solid black;
+}
+
+#calculator-grid{
+    margin: 5vh auto;
+    width: 400px;
+    height: 400px;
+    background-color: rgb(182, 173, 173);
+    display: grid;
+    grid-gap: 1px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    
+    grid-template-areas: 
+    "display display display display"
+    "button7 button8 button9 buttonx"
+    "button4 button5 button6 button-"
+    "button1 button2 button3 buttonPlus"
+    "clear   button0 buttonMult buttonDiv";
+}
+
+/* BUTTONS */
+
+.button{
+    color: black;
+    font-weight: bold;
+    border: 1px solid black;;
+    padding-top: 30%;
+}
+
+#display{
+    grid-area: display;
+    padding-top: 8%;
+}
+
+#button0{
+    grid-area: button0;
+}
+#button1{
+    grid-area: button1;
+}
+#button2{
+    grid-area: button2;
+}
+#button3{
+    grid-area: button3;
+}
+#button4{
+    grid-area: button4;
+}
+#button5{
+    grid-area: button5;
+}
+#button6{
+    grid-area: button6;
+}
+#button7{
+    grid-area: button7;
+}
+#button8{
+    grid-area: button8;
+}
+#button9{
+    grid-area: button9;
+}
+#buttonx{
+    grid-area: buttonx;
+}
+#buttonPlus{
+    grid-area: buttonPlus;
+}
+#button-{
+    grid-area: button-;
+}
+#buttonMult{
+    grid-area: buttonMult;
+}
+#buttonDiv{
+    grid-area: buttonDiv;
+}
+#clear{
+    grid-area: clear;
+}
