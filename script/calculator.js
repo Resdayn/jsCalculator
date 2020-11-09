@@ -6,7 +6,7 @@ let operator = null;
 
 let displayValue = null
 
-const display = document.querySelector("#display").textContent;
+let display = document.querySelector("#display").textContent;
 
 // NUMBER BUTTONS
 
@@ -14,42 +14,60 @@ let numberButtons = document.querySelectorAll(".numberButton");
 
 numberButtons.forEach(button => {
     button.addEventListener('click', () => {
-        if (operator === false){
+        console.log(`Button ${button.textContent} clicked!`)
+        if (operator == null){
             arrayA.push(button.textContent);
-            refreshDisplay();
+            refreshDisplay(arrayA);
         }
         else {
             arrayB.push(button.textContent);
-            refreshDisplay();
+            refreshDisplay(arrayB);
         }
     })
 })
 
 // OPERATOR BUTTONS
 
-let operators = document.querySelectorAll(".operator");
-operators.forEach(operator, () => {
-    operator.addEventListener('click', () => {
-        window.operator = operator.textContent;
+let operatorsButtons = document.querySelectorAll(".operator");
+operatorsButtons.forEach(operatorButton => {
+    operatorButton.addEventListener('click', () => {
+        console.log(`Operator "${operatorButton.textContent}" Clicked!!`)
+        operator = operatorButton.textContent;
     })
+})
+
+// EQUAL BUTTON
+
+const equal = document.querySelector("#equal");
+
+equal.addEventListener('click', () => {
+    console.log("Equal Clicked!")
+    document.querySelector("#display").textContent = operate();
+    console.log(`Current`)
 })
 
 // Operator Functions
 
 function add(arrayA, arrayB){
-    return arrayA + arrayB
+    console.log(`Add() INVOKED: returned ${parseInt(arrayA.join(""), 10)} + ${parseInt(arrayB.join(""), 10)}`)
+    let result = parseInt(arrayA.join(""), 10) + parseInt(arrayB.join(""), 10);
+    console.log(`Add() is returning ${result}`)
+    return result;
 }
 
 function substract(arrayA, arrayB){
-    return arrayA - arrayB
+    console.log(`Add() INVOKED: returned ${arrayA.join() - arrayB.join()}`)
+    return ( arrayA.join("") - arrayB.join("") )
 }
 
 function multiply(arrayA, arrayB){
-    return arrayA * arrayB
+    console.log(`Add() INVOKED: returned ${arrayA.join() * arrayB.join()}`)
+    return ( arrayA.join("") * arrayB.join("") )
 }
 
 function divide(arrayA, arrayB){
-    return arrayA - arrayB
+    console.log(`Add() INVOKED: returned ${arrayA.join() / arrayB.join()}`)
+    return ( arrayA.join("") / arrayB.join("") )
 }
 
 // OPERATE FUNCTION
@@ -57,7 +75,7 @@ function divide(arrayA, arrayB){
 function operate(){
     switch(operator){
         case "+":
-            add(arrayA, arrayB);
+            return add(arrayA, arrayB);
             break;
         case "-":
             substract(arrayA, arrayB);
@@ -76,6 +94,8 @@ function operate(){
 
 // REFRESH DISPLAY FUNCTION
 
-function refreshDisplay(){
-
+function refreshDisplay(array){
+    // Takes and array, joins all the value and sends them to the display node.
+    displayValue = array.join("");
+    document.querySelector("#display").textContent = displayValue;
 }
