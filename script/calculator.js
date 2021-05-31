@@ -32,6 +32,10 @@ operatorsButtons.forEach(operatorButton => {
     operatorButton.addEventListener('click', () => {
         console.log(`Operator "${operatorButton.textContent}" Clicked!!`)
         operator = operatorButton.textContent;
+
+        if (arrayA) {
+            display.textContent = operate();
+        }
     })
 })
 
@@ -41,8 +45,7 @@ const equal = document.querySelector("#equal");
 
 equal.addEventListener('click', () => {
     console.log("Equal Clicked!")
-    document.querySelector("#display").textContent = operate();
-    console.log(`Current`)
+    display.textContent = operate();
 })
 
 // CLEAR Button
@@ -52,6 +55,9 @@ const clear = document.querySelector('#clear');
 clear.addEventListener('click', () => {
     console.log("Clear Clicked!");
     document.querySelector("#display").textContent = 0;
+    arrayA = [];
+    arrayB = [];
+    operator = null;
 })
 
 // Operator Functions
@@ -84,7 +90,6 @@ function operate() {
     switch (operator) {
         case "+":
             return add(arrayA, arrayB);
-            break;
         case "-":
             substract(arrayA, arrayB);
             break;
@@ -105,5 +110,5 @@ function operate() {
 function refreshDisplay(array) {
     // Takes and array, joins all the value and sends them to the display node.
     displayValue = array.join("");
-    document.querySelector("#display").textContent = displayValue;
+    display.textContent = displayValue;
 }
