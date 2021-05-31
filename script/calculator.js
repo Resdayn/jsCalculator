@@ -15,11 +15,10 @@ let numberButtons = document.querySelectorAll(".numberButton");
 numberButtons.forEach(button => {
     button.addEventListener('click', () => {
         console.log(`Button ${button.textContent} clicked!`)
-        if (operator == null){
+        if (operator == null) {
             arrayA.push(button.textContent);
             refreshDisplay(arrayA);
-        }
-        else {
+        } else {
             arrayB.push(button.textContent);
             refreshDisplay(arrayB);
         }
@@ -46,34 +45,43 @@ equal.addEventListener('click', () => {
     console.log(`Current`)
 })
 
+// CLEAR Button
+
+const clear = document.querySelector('#clear');
+
+clear.addEventListener('click', () => {
+    console.log("Clear Clicked!");
+    document.querySelector("#display").textContent = 0;
+})
+
 // Operator Functions
 
-function add(arrayA, arrayB){
+function add(arrayA, arrayB) {
     console.log(`Add() INVOKED: returned ${parseInt(arrayA.join(""), 10)} + ${parseInt(arrayB.join(""), 10)}`)
     let result = parseInt(arrayA.join(""), 10) + parseInt(arrayB.join(""), 10);
     console.log(`Add() is returning ${result}`)
     return result;
 }
 
-function substract(arrayA, arrayB){
+function substract(arrayA, arrayB) {
     console.log(`Add() INVOKED: returned ${arrayA.join() - arrayB.join()}`)
-    return ( arrayA.join("") - arrayB.join("") )
+    return (arrayA.join("") - arrayB.join(""))
 }
 
-function multiply(arrayA, arrayB){
+function multiply(arrayA, arrayB) {
     console.log(`Add() INVOKED: returned ${arrayA.join() * arrayB.join()}`)
-    return ( arrayA.join("") * arrayB.join("") )
+    return (arrayA.join("") * arrayB.join(""))
 }
 
-function divide(arrayA, arrayB){
+function divide(arrayA, arrayB) {
     console.log(`Add() INVOKED: returned ${arrayA.join() / arrayB.join()}`)
-    return ( arrayA.join("") / arrayB.join("") )
+    return (arrayA.join("") / arrayB.join(""))
 }
 
 // OPERATE FUNCTION
 
-function operate(){
-    switch(operator){
+function operate() {
+    switch (operator) {
         case "+":
             return add(arrayA, arrayB);
             break;
@@ -94,7 +102,7 @@ function operate(){
 
 // REFRESH DISPLAY FUNCTION
 
-function refreshDisplay(array){
+function refreshDisplay(array) {
     // Takes and array, joins all the value and sends them to the display node.
     displayValue = array.join("");
     document.querySelector("#display").textContent = displayValue;
