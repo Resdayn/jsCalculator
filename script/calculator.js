@@ -1,101 +1,73 @@
-let arrayA = [];
-let arrayB = [];
-let operator = null;
+class Calculator {
+    constructor(){
+        this.display;
+        this.secondValue;
+        this.operator;
+    }
 
-// DISPLAY 
+    add(number1, number2){
+        return number1 + number2;
+    }
 
-let displayValue = null
+    substract(number1, number2){
+        return number1 - number2;
+    }
 
-let display = document.querySelector("#display").textContent;
+    multiply(number1, number2){
+        return number1 * number2;
+    }
 
-// NUMBER BUTTONS
+    divide(number1, number2){
+        return number1 / number2;
+    }
 
+    clearDisplay(){
+        this.display = 0;
+        this.operator = null;
+    }
+
+    setDisplay(number){
+        if (this.display == null){
+            this.display = number;
+        }
+        this.display = this.display.push(number);
+    }
+
+    setOperator(operator){
+        this.operator = operator;
+    }
+
+    operate(){
+        switch (this.operator) {
+            case "+":
+                this.setDisplay(this.add(this.display, secondValue));
+            case "-":
+                this.setDisplay(this.substract(this.display, secondValue));
+            case "*":
+                this.setDisplay(this.multiply(this.display, secondValue));
+            case "/":
+                this.setDisplay(this.divide(this.display, secondValue));
+            default:
+                console.log("ERROR. It seems there is no operator");
+        }
+    
+    }
+}
+// Creates the calculator from the Calculator class
+let calculator = new Calculator();
+
+// Assigns an event listener for each number
 let numberButtons = document.querySelectorAll(".numberButton");
 
 numberButtons.forEach(button => {
     button.addEventListener('click', () => {
         console.log(`Button ${button.textContent} clicked!`)
-        if (operator == null){
-            arrayA.push(button.textContent);
-            refreshDisplay(arrayA);
-        }
-        else {
-            arrayB.push(button.textContent);
-            refreshDisplay(arrayB);
+        if (calculator.secondValue != null) {
+            calculator.clearDisplay();
+            calculator.setDisplay(button.textContent);
+
+        } else {
+            calculator.setDisplay(button.textContent);
         }
     })
 })
-
-// OPERATOR BUTTONS
-
-let operatorsButtons = document.querySelectorAll(".operator");
-operatorsButtons.forEach(operatorButton => {
-    operatorButton.addEventListener('click', () => {
-        console.log(`Operator "${operatorButton.textContent}" Clicked!!`)
-        operator = operatorButton.textContent;
-    })
-})
-
-// EQUAL BUTTON
-
-const equal = document.querySelector("#equal");
-
-equal.addEventListener('click', () => {
-    console.log("Equal Clicked!")
-    document.querySelector("#display").textContent = operate();
-    console.log(`Current`)
-})
-
-// Operator Functions
-
-function add(arrayA, arrayB){
-    console.log(`Add() INVOKED: returned ${parseInt(arrayA.join(""), 10)} + ${parseInt(arrayB.join(""), 10)}`)
-    let result = parseInt(arrayA.join(""), 10) + parseInt(arrayB.join(""), 10);
-    console.log(`Add() is returning ${result}`)
-    return result;
-}
-
-function substract(arrayA, arrayB){
-    console.log(`Add() INVOKED: returned ${arrayA.join() - arrayB.join()}`)
-    return ( arrayA.join("") - arrayB.join("") )
-}
-
-function multiply(arrayA, arrayB){
-    console.log(`Add() INVOKED: returned ${arrayA.join() * arrayB.join()}`)
-    return ( arrayA.join("") * arrayB.join("") )
-}
-
-function divide(arrayA, arrayB){
-    console.log(`Add() INVOKED: returned ${arrayA.join() / arrayB.join()}`)
-    return ( arrayA.join("") / arrayB.join("") )
-}
-
-// OPERATE FUNCTION
-
-function operate(){
-    switch(operator){
-        case "+":
-            return add(arrayA, arrayB);
-            break;
-        case "-":
-            substract(arrayA, arrayB);
-            break;
-        case "*":
-            multiply(arrayA, arrayB);
-            break;
-        case "/":
-            divide(arrayA, arrayB);
-            break;
-        default:
-            alert("ERROR. It seems there is no operator");
-    }
-
-}
-
-// REFRESH DISPLAY FUNCTION
-
-function refreshDisplay(array){
-    // Takes and array, joins all the value and sends them to the display node.
-    displayValue = array.join("");
-    document.querySelector("#display").textContent = displayValue;
-}
