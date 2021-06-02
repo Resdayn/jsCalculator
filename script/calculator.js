@@ -1,6 +1,6 @@
 class Calculator {
     constructor(){
-        this.display;
+        this.display = "";
         this.secondValue;
         this.operator;
     }
@@ -22,15 +22,23 @@ class Calculator {
     }
 
     clearDisplay(){
-        this.display = 0;
+        this.display = "0";
         this.operator = null;
     }
 
     setDisplay(number){
-        if (this.display == null){
+        console.log("setDisplay Fired!");
+        if (this.display == "0"){
             this.display = number;
+            console.log(`setDisplay is now ${this.display}`);
         }
-        this.display = this.display.push(number);
+        this.display = this.display.concat(number)
+        console.log(`setDisplay is now ${this.display}`);
+    }
+
+    refreshDisplay(div){
+        document.getElementById("display").textContent = this.display;
+        console.log(`The display div is now ${div}`);
     }
 
     setOperator(operator){
@@ -65,9 +73,11 @@ numberButtons.forEach(button => {
         if (calculator.secondValue != null) {
             calculator.clearDisplay();
             calculator.setDisplay(button.textContent);
+            calculator.refreshDisplay();
 
         } else {
             calculator.setDisplay(button.textContent);
+            calculator.refreshDisplay();
         }
     })
 })
