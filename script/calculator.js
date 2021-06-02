@@ -31,14 +31,16 @@ class Calculator {
     setDisplay(number){
         // Pushes numbers to the display variable
 
-        console.log("setDisplay Fired!");
-        if (this.display === "0"){
+        console.log(`setDisplay Invoked! Current display: ${this.display}`);
+        if (this.display == "0"){
             this.display = number;
-            console.log(`setDisplay is now ${this.display}`);
+            console.log(`Added number: ${number}. Display: ${this.display} `);
+        } else {
+            this.display = this.display.concat(number);
+            console.log(`Concatenation for display triggered -> number: ${number}. Display: ${this.display}`);   
         }
         
-        this.display = this.display.concat(number);
-        console.log(`Concatenation for display triggered -> ${this.display}`);    
+          
         
         
     }
@@ -46,19 +48,20 @@ class Calculator {
     refreshDisplay(div){
         if (this.operator != ""){
             document.getElementById("display").textContent = this.secondValue;
+        } else {
+           document.getElementById("display").textContent = this.display; 
         }
-        document.getElementById("display").textContent = this.display;
-        
     }
 
     setSecondValue(number){
         console.log("setSecondValue Fired!");
         if (this.secondValue == ""){
             this.secondValue = number;
-            console.log(`setDisplay is now ${this.secondValue}`);
+            console.log(`secondValue is now ${this.secondValue}`);
+        } else {
+            this.secondValue = this.secondValue.concat(number);
+            console.log(`secondValue is now ${this.secondValue}`); 
         }
-        this.secondValue = this.secondValue.concat(number);
-        console.log(`setDisplay is now ${this.secondValue}`);
     }
 
     setOperator(operator){
@@ -68,13 +71,14 @@ class Calculator {
     operate(){
         switch (this.operator) {
             case "+":
-                this.setDisplay(this.add(this.display, secondValue));
+                this.setDisplay(this.add(this.display, this.secondValue));
+                this.refreshDisplay();
             case "-":
-                this.setDisplay(this.substract(this.display, secondValue));
+                this.setDisplay(this.substract(this.display, this.secondValue));
             case "*":
-                this.setDisplay(this.multiply(this.display, secondValue));
+                this.setDisplay(this.multiply(this.display, this.secondValue));
             case "/":
-                this.setDisplay(this.divide(this.display, secondValue));
+                this.setDisplay(this.divide(this.display, this.secondValue));
             default:
                 console.log("ERROR. It seems there is no operator");
         }
@@ -95,22 +99,27 @@ numberButtons.forEach(button => {
         
         if ((calculator.display != "") && (calculator.operator != "")){
             // if there is an operator already and you press a number, it should go to the secondValue and display it.
+            console.log("Triggered 'an operator already and you press a number'")
             document.getElementById("display").textContent = "";
             calculator.setSecondValue(button.textContent);
             calculator.refreshDisplay();
         }
 
-        if ((calculator.display != "") && (calculator.isSavedResult = true)) {
+        else if ((calculator.display != "") && (calculator.isSavedResult == true)) {
             // Resets the entire calculator if you press any number when there is a saved result in memory.
+            console.log("Triggered 'press any number when there is a saved result in memory'")
             calculator.clearDisplay();
             calculator.setDisplay(button.textContent);
             calculator.refreshDisplay();
 
         } else {
             // The default behavior is to push the number to the display value
+            console.log("Triggered Default button behavior");
             calculator.setDisplay(button.textContent);
-            calculator.refreshDisplay();
+            calculator.refreshDisplay();    
         }
+        
+        
         
     })
 })
