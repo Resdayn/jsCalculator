@@ -124,7 +124,7 @@ numberButtons.forEach(button => {
     })
 })
 
-// Assign an event listener for each Operator button
+// Assigns an event listener for each Operator button
 
 let operatorsButtons = document.querySelectorAll(".operator");
 operatorsButtons.forEach(operatorButton => {
@@ -138,4 +138,13 @@ operatorsButtons.forEach(operatorButton => {
             calculator.setOperator("");
         }
     })
+})
+
+// Assigns the EQUAL button
+
+const equal = document.querySelector("#equal");
+
+equal.addEventListener('click', () => {
+    console.log("Equal Clicked!");
+    calculator.operate();
 })
