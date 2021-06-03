@@ -76,19 +76,35 @@ class Calculator {
     operate(){
         switch (this.operator) {
             case "+":
-                let result = this.add(parseInt(this.display), parseInt(this.secondValue));
+                let addResult = this.add(parseInt(this.display), parseInt(this.secondValue));
                 this.operator = "";
                 this.clearSecondValue();
-                this.display = result.toString();
+                this.display = addResult.toString();
                 this.refreshDisplay();
+                break;
             case "-":
-                //this.setDisplay(this.substract(this.display, this.secondValue));
+                let substractResult = this.substract(parseInt(this.display), parseInt(this.secondValue));
+                this.operator = "";
+                this.clearSecondValue();
+                this.display = substractResult.toString();
+                this.refreshDisplay();
+                break;
             case "*":
-                //this.setDisplay(this.multiply(this.display, this.secondValue));
+                let multiplyResult = this.multiply(parseInt(this.display), parseInt(this.secondValue));
+                this.operator = "";
+                this.clearSecondValue();
+                this.display = multiplyResult.toString();
+                this.refreshDisplay();
+                break;
             case "/":
-                //this.setDisplay(this.divide(this.display, this.secondValue));
+                let divideResult = this.divide(parseInt(this.display), parseInt(this.secondValue));
+                this.operator = "";
+                this.clearSecondValue();
+                this.display = divideResult.toString();
+                this.refreshDisplay();
+                break;
             default:
-                //console.log("ERROR. It seems there is no operator");
+                console.log("ERROR. It seems there is no operator");
         }
     
     }
