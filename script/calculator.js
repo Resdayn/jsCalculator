@@ -46,6 +46,7 @@ class Calculator {
     }
 
     refreshDisplay(div){
+        console.log("refreshDisplay INVOKED");
         if (this.operator != ""){
             document.getElementById("display").textContent = this.secondValue;
         } else {
@@ -64,6 +65,10 @@ class Calculator {
         }
     }
 
+    clearSecondValue(){
+        this.secondValue = "";
+    }
+
     setOperator(operator){
         this.operator = operator;
     }
@@ -71,16 +76,19 @@ class Calculator {
     operate(){
         switch (this.operator) {
             case "+":
-                this.setDisplay(this.add(this.display, this.secondValue));
+                let result = this.add(parseInt(this.display), parseInt(this.secondValue));
+                this.operator = "";
+                this.clearSecondValue();
+                this.display = result.toString();
                 this.refreshDisplay();
             case "-":
-                this.setDisplay(this.substract(this.display, this.secondValue));
+                //this.setDisplay(this.substract(this.display, this.secondValue));
             case "*":
-                this.setDisplay(this.multiply(this.display, this.secondValue));
+                //this.setDisplay(this.multiply(this.display, this.secondValue));
             case "/":
-                this.setDisplay(this.divide(this.display, this.secondValue));
+                //this.setDisplay(this.divide(this.display, this.secondValue));
             default:
-                console.log("ERROR. It seems there is no operator");
+                //console.log("ERROR. It seems there is no operator");
         }
     
     }
@@ -95,8 +103,6 @@ let numberButtons = document.querySelectorAll(".numberButton");
 
 numberButtons.forEach(button => {
     button.addEventListener('click', () => {
-        console.log(`Button ${button.textContent} clicked!`);
-        
         if ((calculator.display != "") && (calculator.operator != "")){
             // if there is an operator already and you press a number, it should go to the secondValue and display it.
             console.log("Triggered 'an operator already and you press a number'")
@@ -145,6 +151,6 @@ operatorsButtons.forEach(operatorButton => {
 const equal = document.querySelector("#equal");
 
 equal.addEventListener('click', () => {
-    console.log("Equal Clicked!");
+    console.log("--- Equal Clicked! ---");
     calculator.operate();
 })
