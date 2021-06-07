@@ -169,4 +169,5 @@ const equal = document.querySelector("#equal");
 equal.addEventListener('click', () => {
     console.log("--- Equal Clicked! ---");
     calculator.operate();
+    this.isSavedResult = true;
 })
