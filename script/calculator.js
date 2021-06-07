@@ -140,6 +140,10 @@ numberButtons.forEach(button => {
             calculator.setDisplay(button.textContent);
             calculator.refreshDisplay();    
         }
+
+        // TODO: add conditional so if you press a number when isSavedResult=true and there is no operator, it will reset the calculator.
+
+        // TODO: add conditional so if you press a number when isSavedResult=true and there is an operator, the number will be added to the secondValue 
         
         
         
@@ -158,7 +162,7 @@ operatorsButtons.forEach(operatorButton => {
         if ((calculator.display != "") && (calculator.secondValue != "")) {
             calculator.operate();
             calculator.setOperator("");
-        }
+        }       
     })
 })
 
