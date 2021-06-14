@@ -175,3 +175,14 @@ equal.addEventListener('click', () => {
     calculator.operate();
     this.isSavedResult = true;
 })
+
+// Assigns the CLEAR Button
+
+const clear = document.querySelector('#clear');
+
+clear.addEventListener('click', () => {
+    console.log("Clear Clicked!");
+    calculator.clearDisplay();
+    calculator.clearSecondValue();
+    calculator.refreshDisplay();
+})
