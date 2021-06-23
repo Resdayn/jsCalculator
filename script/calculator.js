@@ -119,7 +119,6 @@ let numberButtons = document.querySelectorAll(".numberButton");
 
 numberButtons.forEach(button => {
     button.addEventListener('click', () => {
-<<<<<<< HEAD
         if ((calculator.display != "") && (calculator.operator != "")){
             // if there is an operator already and you press a number, it should go to the secondValue and display it.
             console.log("Triggered 'an operator already and you press a number'")
@@ -140,15 +139,6 @@ numberButtons.forEach(button => {
             console.log("Triggered Default button behavior");
             calculator.setDisplay(button.textContent);
             calculator.refreshDisplay();    
-=======
-        console.log(`Button ${button.textContent} clicked!`)
-        if (operator == null) {
-            arrayA.push(button.textContent);
-            refreshDisplay(arrayA);
-        } else {
-            arrayB.push(button.textContent);
-            refreshDisplay(arrayB);
->>>>>>> d2ec9bb82ea119147f342acff8ecf5033c5bac5f
         }
 
         // TODO: add conditional so if you press a number when isSavedResult=true and there is no operator, it will reset the calculator.
@@ -166,7 +156,6 @@ let operatorsButtons = document.querySelectorAll(".operator");
 operatorsButtons.forEach(operatorButton => {
     operatorButton.addEventListener('click', () => {
         console.log(`Operator "${operatorButton.textContent}" Clicked!!`)
-<<<<<<< HEAD
         calculator.setOperator(operatorButton.textContent);
         console.log(`Operator is now set to ${this.operator}`);
         // Triggers the operate function if there are already 2 values and you click an operator 
@@ -174,13 +163,6 @@ operatorsButtons.forEach(operatorButton => {
             calculator.operate();
             calculator.setOperator("");
         }       
-=======
-        operator = operatorButton.textContent;
-
-        if (arrayA) {
-            display.textContent = operate();
-        }
->>>>>>> d2ec9bb82ea119147f342acff8ecf5033c5bac5f
     })
 })
 
@@ -189,89 +171,18 @@ operatorsButtons.forEach(operatorButton => {
 const equal = document.querySelector("#equal");
 
 equal.addEventListener('click', () => {
-<<<<<<< HEAD
     console.log("--- Equal Clicked! ---");
     calculator.operate();
     this.isSavedResult = true;
 })
 
 // Assigns the CLEAR Button
-=======
-    console.log("Equal Clicked!")
-    display.textContent = operate();
-})
-
-// CLEAR Button
 
 const clear = document.querySelector('#clear');
 
-clear.addEventListener('click', () => {
-    console.log("Clear Clicked!");
-    document.querySelector("#display").textContent = 0;
-    arrayA = [];
-    arrayB = [];
-    operator = null;
-})
-
-// Operator Functions
-
-function add(arrayA, arrayB) {
-    console.log(`Add() INVOKED: returned ${parseInt(arrayA.join(""), 10)} + ${parseInt(arrayB.join(""), 10)}`)
-    let result = parseInt(arrayA.join(""), 10) + parseInt(arrayB.join(""), 10);
-    console.log(`Add() is returning ${result}`)
-    return result;
-}
-
-function substract(arrayA, arrayB) {
-    console.log(`Add() INVOKED: returned ${arrayA.join() - arrayB.join()}`)
-    return (arrayA.join("") - arrayB.join(""))
-}
-
-function multiply(arrayA, arrayB) {
-    console.log(`Add() INVOKED: returned ${arrayA.join() * arrayB.join()}`)
-    return (arrayA.join("") * arrayB.join(""))
-}
-
-function divide(arrayA, arrayB) {
-    console.log(`Add() INVOKED: returned ${arrayA.join() / arrayB.join()}`)
-    return (arrayA.join("") / arrayB.join(""))
-}
-
-// OPERATE FUNCTION
-
-function operate() {
-    switch (operator) {
-        case "+":
-            return add(arrayA, arrayB);
-        case "-":
-            substract(arrayA, arrayB);
-            break;
-        case "*":
-            multiply(arrayA, arrayB);
-            break;
-        case "/":
-            divide(arrayA, arrayB);
-            break;
-        default:
-            alert("ERROR. It seems there is no operator");
-    }
-
-}
->>>>>>> d2ec9bb82ea119147f342acff8ecf5033c5bac5f
-
-const clear = document.querySelector('#clear');
-
-<<<<<<< HEAD
 clear.addEventListener('click', () => {
     console.log("Clear Clicked!");
     calculator.clearDisplay();
     calculator.clearSecondValue();
     calculator.refreshDisplay();
 })
-=======
-function refreshDisplay(array) {
-    // Takes and array, joins all the value and sends them to the display node.
-    displayValue = array.join("");
-    display.textContent = displayValue;
-}
->>>>>>> d2ec9bb82ea119147f342acff8ecf5033c5bac5f
