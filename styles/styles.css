@@ -19,8 +19,8 @@ body {
 
 #calculator-grid {
     margin: 5vh auto;
-    width: 40vw;
-    height: 70vh;
+    width: 30rem;
+    height: 40rem;
     background-color: hsl(223, 31%, 20%);
     padding: 2rem;
     display: grid;
@@ -134,4 +134,12 @@ body {
 
 #equal {
     grid-area: equal;
+}
+
+@media (max-width: 559px) {
+    #calculator-grid {
+        margin: 5vh auto;
+        min-width: 30rem;
+        max-height: 40rem;
+    }
 }
